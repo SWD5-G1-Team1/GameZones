@@ -17,17 +17,23 @@
             <a href="@Url.Action("Index", "Admin")" class="nav-item nav-link @(ViewData["Title"] == "Dashboard" ? "active" : "")">
                 <i class="fa fa-tachometer-alt me-2"></i>Dashboard
             </a>
-            <a href="@Url.Action("Index", "Product")" class="nav-item nav-link @(ViewData["Title"] == "Products" ? "active" : "")">
+            <a href="@Url.Action("Index", "ProductAdmin")" class="nav-item nav-link @(ViewData["Title"] == "Products" ? "active" : "")">
                 <i class="fa fa-box me-2"></i>Products
             </a>
-            <a href="@Url.Action("Index", "Category")" class="nav-item nav-link @(ViewData["Title"] == "Categories" ? "active" : "")">
+            <a href="@Url.Action("Index", "CategoryAdmin")" class="nav-item nav-link @(ViewData["Title"] == "Categories" ? "active" : "")">
                 <i class="fa fa-th me-2"></i>Categories
             </a>
             <a href="@Url.Action("Index", "Order")" class="nav-item nav-link @(ViewData["Title"] == "Orders" ? "active" : "")">
                 <i class="fa fa-shopping-cart me-2"></i>Orders
             </a>
-            <a href="@Url.Action("Index", "User")" class="nav-item nav-link @(ViewData["Title"] == "Users" ? "active" : "")">
+            <a href="@Url.Action("Index", "UsersAdmin")" class="nav-item nav-link @(ViewData["Title"] == "Users" ? "active" : "")">
                 <i class="fa fa-user me-2"></i>Users
+            </a>
+            <a href="@Url.Action("Index", "RolesAdmin")" class="nav-item nav-link @(ViewData["Title"] == "Users" ? "active" : "")">
+                <i class="fa fa-user me-2"></i>Roles
+            </a>
+            <a href="@Url.Action("Assign", "UserRoles")" class="nav-item nav-link @(ViewData["Title"] == "Users" ? "active" : "")">
+                <i class="fa fa-user me-2"></i>Assign Roles
             </a>
         </div>
     </nav>

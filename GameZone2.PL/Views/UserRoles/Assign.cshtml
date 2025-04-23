@@ -1,0 +1,62 @@
+﻿@using GameZone2.PL.Models.Roles
+
+@{
+    ViewData["Title"] = "Assign";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+}
+
+@model List<AssignRolesViewModel>
+@section Style
+{
+    <link href="~/admindashboardcontent/css/assignrolestyle.css" rel="stylesheet" />
+}
+<div class="container mt-5">
+    <h2 class="mb-4 text-center">
+        🧙‍♂️ Assign Multiple Roles to User
+    </h2>
+
+    <!-- البحث عن المستخدم -->
+    <form method="get" asp-action="Assign" class="d-flex mb-4">
+        <input type="text" name="username" value="" class="form-control me-2" placeholder="Enter username..." />
+        <button type="submit" class="btn btn-primary">Search</button>
+    </form>
+    @foreach (var user in Model)
+    {
+        <div class="card mb-4 role-box">
+            <div class="card-body">
+                <form asp-action="Assign" method="post">
+                    <h5 class="card-title mb-3">
+                        <i class="bi bi-person-fill"></i> Username: <strong>@user.Username</strong>
+                    </h5>
+                    <input type="hidden" name="Username" value="@user.Username" />
+
+                    <div class="mb-3">
+                        <label class="form-label">Select Roles:</label><br />
+                        @for (int i = 0; i < user.Roles.ToList().Count; i++)
+                        {
+                            var roleList = user.Roles.ToList();
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox"
+                                       name="Roles[@i].IsSelected"
+                                       value="true" @(roleList[i].IsSelected ? "checked" : "") />
+                                <input type="hidden" name="Roles[@i].RoleName" value="@roleList[i].RoleName" />
+                                <label class="form-check-label">@roleList[i].RoleName</label>
+                            </div>
+                        }
+                        @if (!string.IsNullOrEmpty(user.Message))
+                        {
+                            <div class="alert alert-success d-flex align-items-center mt-3" role="alert">
+                                <i class="bi bi-check-circle-fill me-2"></i>
+                                <span>@Html.Raw(user.Message)</span>
+                            </div>
+                        }
+
+                    </div>
+
+                    <button type="submit" class="btn btn-success">Assign Roles</button>
+                </form>
+            </div>
+        </div>
+    }
+

@@ -15,7 +15,7 @@ namespace Game.DAL.Entities
         //  المفتاح الأجنبي لربط المنتج بالفئة
         public long? CategoryId { get; set; }
         //  العلاقة مع الفئة
-        public Category Category { get;  set; }
+        public  Category Category { get;  set; }
         //  المفتاح الأجنبي لربط المنتج بالخصم
         public long? DiscountId { get; set; }
         //  العلاقة مع الخصم

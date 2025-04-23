@@ -16,11 +16,11 @@ namespace Game.DAL.Entities
     public class ApplicationUser:IdentityUser
     {
         public string FullName { get; set; }
-        public string UserType { get; set; }
+        public string UserType { get; set; } = string.Empty;
         public List<Product> Products { get; set; }
         public List<Order> Orders { get; set; }
         public List<Notification> Notifications { get; set; }
         public WishList WishList { get; set; }
-        public Cart Cart { get; set; }
+        public  Cart Cart { get; set; }
     }
 }

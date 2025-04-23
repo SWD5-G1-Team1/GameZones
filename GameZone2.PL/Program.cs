@@ -7,6 +7,9 @@ using Game.DAL.Repository.Implementation;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Game.DAL.Entities;
+using Bl.Services.Abstraction;
+using Bl.Services.Implementation;
+using GameZone2.PL.Models.Helpers;
 
 namespace Game.PL
 {
@@ -28,7 +31,8 @@ namespace Game.PL
 
             // ✅ تسجيل الـ DbContext أولًا
             builder.Services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+                options
+                       .UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
             // ✅ تسجيل الهوية (Identity)
             builder.Services.AddIdentity<ApplicationUser, IdentityRole>(options =>
@@ -47,9 +51,13 @@ namespace Game.PL
             // ✅ تسجيل الـ Repositories
             builder.Services.AddScoped<IProductRepo, ProductRepo>();
             builder.Services.AddScoped<IGenericRepository<Product>, GenericRepository<Product>>();
+            builder.Services.AddScoped<IGenericRepository<Category>, GenericRepository<Category>>();
 
             // ✅ تسجيل الـ Services
             builder.Services.AddScoped<IProductService, ProductService>();
+            builder.Services.AddScoped<ICategoryServices, CategoryServices>();
+            builder.Services.AddScoped<IFileService , FileService>();
+
 
 
             WebApplication app = builder.Build();

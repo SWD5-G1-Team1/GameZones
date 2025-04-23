@@ -1,0 +1,101 @@
+﻿@using Game.DAL.Entities;
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+@model List<RoleAdminViewModel>
+
+<div class="container-fluid pt-4 px-4">
+    <div class="row g-4">
+        <h2>Products List</h2>
+
+        @if (ViewBag.Message != null)
+        {
+            <div class="alert alert-danger">@ViewBag.Message</div>
+        }
+
+        <div class="col-12">
+            <div class="filter">
+                <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
+                <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+                    <li class="dropdown-header text-start">
+                        <h6>Filter</h6>
+                    </li>
+                    <li><a class="dropdown-item" href="#">Today</a></li>
+                    <li><a class="dropdown-item" href="#">This Month</a></li>
+                    <li><a class="dropdown-item" href="#">This Year</a></li>
+                </ul>
+            </div>
+
+            <div class="bg-secondary rounded h-100 p-4">
+                <h6 class="mb-4">Product Table</h6>
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead class="text-primary fs-20 text-uppercase text-center">
+                            <tr>
+                                <th>Id</th>
+                                <th>Name</th>
+                                <th>Delete</th>
+                                <th>Edit</th>
+                            </tr>
+                        </thead>
+                        <tbody class="text-center">
+                            @foreach (var role in Model)
+                            {
+                                <tr class="text-center">
+                                    <td>@role.Id</td>
+                                    <td>@role.Name</td>
+                                    <td><button class="btn btn-danger delete-btn" data-id="@role.Id">Delete</button></td>
+                                    <td><a asp-action="Edit" class="btn btn-primary " asp-route-id="@role.Id">Edit</a></td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div> <!-- col-12 -->
+    </div> <!-- row -->
+    <div class="mt-5">
+        <a asp-action="Create" class="btn text-white bg-primary">Add New Role</a>
+    </div>
+</div> <!-- container-fluid -->
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $('.delete-btn').click(function (e) {
+                e.preventDefault(); // prevent default <a> behavior if used
+
+                var button = $(this); // reference to the clicked button
+                var id = button.data('id');
+
+                Swal.fire({
+                    title: 'Are you sure?',
+                    text: "This action cannot be undone!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#d33',
+                    cancelButtonColor: '#3085d6',
+                    confirmButtonText: 'Yes, delete it!',
+                    cancelButtonText: 'Cancel'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        $.ajax({
+                            url: '/RolesAdmin/Delete/' + id,
+                            type: 'POST',
+                            success: function (res) {
+                                toastr.success("Deleted successfully");
+
+                                // Remove the row without reloading the page
+                                button.closest('tr').fadeOut(300, function () {
+                                    $(this).remove();
+                                });
+                            },
+                            error: function () {
+                                toastr.error("An error occurred while deleting");
+                            }
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+}

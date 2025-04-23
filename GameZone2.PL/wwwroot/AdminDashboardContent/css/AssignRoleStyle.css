@@ -1,0 +1,59 @@
+﻿input[type="text"] {
+    background-color: #1E1E1E;
+    color: #FFF;
+    border: 1px solid #333;
+    padding: 10px;
+    border-radius: 6px;
+}
+
+input::placeholder {
+    color: #AAAAAA;
+}
+.role-box {
+    background-color: #1E1E1E; /* بديل الأبيض */
+    color: #FFFFFF; /* لون الخط */
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.4);
+    border: 1px solid #333;
+}
+button {
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+    button.search-btn {
+        background-color: #FF4C4C;
+        color: #FFF;
+    }
+
+        button.search-btn:hover {
+            background-color: #FF6666;
+        }
+
+    button.assign-btn {
+        background-color: #00C853;
+        color: #FFF;
+    }
+
+        button.assign-btn:hover {
+            background-color: #00E676;
+        }
+
+.role-box {
+    background-color: #1E1E1E;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.5);
+}
+
+label {
+    color: #FFF;
+    margin-right: 10px;
+}

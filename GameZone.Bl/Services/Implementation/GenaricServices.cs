@@ -43,7 +43,14 @@ namespace Game.BL.Services.Implementation
         {
             try
             {
-                var result = _repository.Get(e => (long)e!.GetType().GetProperty("Id")!.GetValue(e)! == id);
+                var parameter = Expression.Parameter(typeof(T), "e");
+                var property = Expression.Property(parameter, "Id");
+                var idValue = Expression.Constant(id, typeof(long));
+                var equal = Expression.Equal(property, idValue);
+
+                var lambda = Expression.Lambda<Func<T, bool>>(equal, parameter);
+
+                var result = _repository.Get(lambda);
                 if (result == null)
                     return (null, false, "Entity not found");
 

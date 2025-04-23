@@ -6,7 +6,7 @@
         public string Name { get; set; }
         public string Description { get; set; }
         // 🔹 العلاقة مع المنتجات
-        public List<Product> Products { get;  set; }
+        public  List<Product> Products { get;  set; }
         public List<Banner> Banners { get;  set; }
        
      
