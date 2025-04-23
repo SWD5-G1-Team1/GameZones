@@ -19,4 +19,10 @@
     <ProjectReference Include="..\GameZone.DAL\DAL.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\GameZone\popup\assets\images\demos\demo-6\products\" />
+    <Folder Include="wwwroot\GameZone\popup\assets\images\popup\quickView\" />
+    <Folder Include="wwwroot\GameZone\popup\popup\" />
+  </ItemGroup>
+
 </Project>

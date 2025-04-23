@@ -80,7 +80,7 @@ namespace Game.PL
 
             app.MapControllerRoute(
                 name: "default",
-                pattern: "{controller=Home}/{action=Index}/{id?}");
+                pattern: "{controller=GameZone}/{action=Index}/{id?}");
 
             // نجعل دالة main غير متزامنة async بحيث نقدر نستخدم await بداخلها
 
